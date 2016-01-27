@@ -5,7 +5,7 @@
 * 安装开发工具（IDE），推荐使用[vscode](https://code.visualstudio.com/ "vscode")；
 * 启动开发工具，如下图    
 	![VSCode](./doc/images/vscode.png)
-* 新建一个文件index01.js，加入如下代码     
+* 新建一个文件index01.js，加入如下代码(详细见index01.js)     
 ````javascript   
 function sayHello(name){   
 	console.info("Hello " + name);   
@@ -22,6 +22,25 @@ NPM，Node Package Management, 是一款nodejs的包管理工具。
 * 安装包    
 	npm install jsdom       
 	![install](./doc/images/npm_install.png)    
-* 编写js文档
-* 执行
+* 编写js文档，详细讲examples/index02.js     
+````javascript    
+var jsdom = require("jsdom");
+jsdom.env(
+  "http://www.starbucks.com.tw/coffee/catalog.jspx",
+  ["http://code.jquery.com/jquery.js"],
+  function (err, window) {
+      console.log("Scan for images...");
+      window.$("img").each(function(index, item){
+        console.log("Src: " + window.$(item).attr("src")); 
+      });
+      console.log("Scan for links...");
+      window.$("a").each(function(index, item){
+        console.log("Href: " + window.$(item).attr("href"));
+        console.log("Content: " + window.$(item).text());    
+      });
+  }
+);
+````    
+* 执行代码： node index02.js    
+	![run](./doc/images/npm_run.png)  
 	
